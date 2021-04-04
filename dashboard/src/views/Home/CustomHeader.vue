@@ -7,10 +7,16 @@
         </div>
 
         <div class="flex">
-          <button class="px-6 py-2 font-bold rounded-full text-white focus:outline-none">
+          <button
+            @click="() => emit('create-account')"
+            class="px-6 py-2 font-bold rounded-full text-white focus:outline-none"
+          >
             Create account
           </button>
-          <button class="px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none">
+          <button
+            @click="() => emit('login')"
+            class="px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none"
+          >
             Login
           </button>
         </div>
@@ -26,7 +32,10 @@
           simple widget on your page
         </p>
         <div>
-          <button class="px-6 py-2 mt-10 font-bold bg-white rounded-full text-brand-main focus:outline-none">
+          <button
+            @click="() => emit('create-account')"
+            class="px-6 py-2 mt-10 font-bold bg-white rounded-full text-brand-main focus:outline-none"
+          >
             Create a free account!
           </button>
         </div>
@@ -36,7 +45,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+  setup (_, { emit }) {
+    return { emit }
+  }
+}
 </script>
 
 <style lang="postcss" scoped>
