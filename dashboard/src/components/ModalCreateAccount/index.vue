@@ -124,7 +124,7 @@ export default {
       }
     })
 
-    async function login({ email, password }) {
+    async function login ({ email, password }) {
       const { data, errors } = await services.auth.login({ email, password })
 
       if (!errors) {
@@ -141,7 +141,7 @@ export default {
         toast.clear()
         state.isLoading = true
 
-        const { data, errors } = await services.auth.register({
+        const { errors } = await services.auth.register({
           name: state.name.value,
           email: state.email.value,
           password: state.password.value
@@ -150,8 +150,10 @@ export default {
         if (!errors) {
           await login({
             email: state.email.value,
-            password: state.password.value,
+            password: state.password.value
           })
+
+          return
         }
 
         if (errors.status === 400) {
