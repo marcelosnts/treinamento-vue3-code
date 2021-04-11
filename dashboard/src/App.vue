@@ -15,7 +15,6 @@ export default {
   setup () {
     const router = useRouter()
     const route = useRoute()
-    route.path
 
     watch(() => route.path, async () => {
       if (route.meta.hasAuth) {
