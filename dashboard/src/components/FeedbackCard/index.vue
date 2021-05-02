@@ -15,8 +15,11 @@
     </div>
 
     <div
-      v-if="state.isOpen"
+      :class="{
+        animate__fadeOutUp: state.isClosing
+      }"
       class="flex mt-8 animate__animated animate__fadeInUp animte__faster"
+      v-if="state.isOpen"
     >
       <div class="flex flex-col w-1/2">
         <div class="flex flex-col">
@@ -61,6 +64,7 @@ import { reactive } from 'vue'
 
 import Badge from './Badge'
 import { getDiffTimeBetweenCurrentDate } from '../../utils/date'
+import { wait } from '../../utils/timeout'
 import palette from '../../../palette'
 import Icon from '../Icon'
 
@@ -75,11 +79,16 @@ export default {
   },
   setup (props) {
     const state = reactive({
-      isOpen: props.isOpened
+      isOpen: props.isOpened,
+      isClosing: !props.isOpened
     })
 
-    function handleToggle () {
+    async function handleToggle () {
+      state.isClosing = true
 
+      await wait(250)
+      state.isOpen = !state.isOpen
+      state.isClosing = false
     }
 
     return {
