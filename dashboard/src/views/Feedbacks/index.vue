@@ -36,7 +36,7 @@
           It was not possible to load your feedbacks :/
         </p>
         <p
-          v-if="!state.feedbacks.length && !state.isLoading"
+          v-if="!state.feedbacks.length && !state.isLoading && !state.isLoadingFeedbacks && !state.isLoadingMoreFeedbacks"
           class="text-large text-center text-gray-800 font-regular"
         >
           There is no feedbacks to show
@@ -83,7 +83,8 @@ export default {
       currentFeedbackType: '',
       pagination: {
         limit: 5,
-        offset: 0
+        offset: 0,
+        total: 0
       },
       hasError: false
     })
