@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { reactive, onMounted, onUnmounted } from 'vue'
+import { reactive, onMounted, onUnmounted, onErrorCaptured } from 'vue'
 
 import services from '../../services'
 import HeaderLogged from '../../components/HeaderLogged'
@@ -88,6 +88,8 @@ export default {
       },
       hasError: false
     })
+
+    onErrorCaptured(handleErrors)
 
     onMounted(() => {
       fetchFeedbacks()
